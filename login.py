@@ -26,32 +26,22 @@ for i in range(accounts):
     
     # Ensure the screen is loaded
     screen = wait.until(EC.presence_of_element_located((By.ID, 'layaCanvas')))
-    
+
     # 2. Input email
-    ActionChains(driver)\
-        .move_to_element_with_offset(screen, 1279.9, 278.031)\
-        .click()\
-        .perform()
-    
-    email_input = wait.until(EC.presence_of_element_located((By.NAME, 'input')))
+    email_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="input"]')))
+    email_input.click()
     email_input.send_keys(email)
     print('Input email successfully')
 
     # 3. Input password
-    ActionChains(driver)\
-        .move_to_element_with_offset(screen, 1279.9, 328.031)\
-        .click()\
-        .perform()
-    
-    password_input = wait.until(EC.presence_of_element_located((By.NAME, 'input')))
+    password_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="input_password"]')))
+    password_input.click()
     password_input.send_keys(passwd)
     print('Input password successfully')
 
-    # 4. Login
-    ActionChains(driver)\
-        .move_to_element_with_offset(screen, 1279.9, 378.031)\
-        .click()\
-        .perform()
+    # 4. login
+    login_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '目标按钮的CSS选择器'))) # 请替换为实际按钮的选择器
+    login_button.click()
     
     print('Entering game...')
     sleep(20)  # waiting for the game to load...
